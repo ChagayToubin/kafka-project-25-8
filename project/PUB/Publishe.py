@@ -25,11 +25,13 @@ class Producer:
         data = Producer.pop_first_items(data)
         for k, v in data.items():
             self.producer.send('interesting', {k: v})
+            print("finsih send in")
 
     def not_intrsthing_publish(self, data):
         data = Producer.pop_first_items(data)
         for k, v in data.items():
             self.producer.send('not_interesting', {k: v})
+            print("finish send not")
 
     @staticmethod
     def pop_first_items(d):
@@ -37,7 +39,3 @@ class Producer:
         for key, lst in d.items():
             new_dict[key] = lst.pop(0)
         return new_dict
-
-
-p = Producer()
-p.publish()
